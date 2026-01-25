@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXTGN-IT | Company Profile & Business Offer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            --brand-primary: #3b82f6;
+            --brand-dark: #020617;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--brand-dark);
+        }
+
+        .glass-header {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .profile-gradient {
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent),
+                        linear-gradient(to bottom, #020617, #0f172a);
+        }
+
+        .card-profile {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-profile:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(30, 41, 59, 0.5);
+            transform: translateY(-8px);
+        }
+
+        .offer-highlight {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .section-tag {
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            color: #60a5fa;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="text-slate-200">
+
+    <!-- Navigation -->
+    <header class="fixed w-full z-50 glass-header">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/20">
+                    <i class="fas fa-microchip text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-10 text-sm font-semibold tracking-wide">
+                <a href="#profile" class="hover:text-blue-500 transition">Profile</a>
+                <a href="#offer" class="hover:text-blue-500 transition">Business Offer</a>
+                <a href="#contact" class="bg-blue-600 px-6 py-2.5 rounded-full text-white hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">Get in Touch</a>
+            </nav>
+
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero / Intro -->
+    <section id="profile" class="pt-40 pb-24 profile-gradient">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="section-tag mb-4">Our Vision</p>
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-8">
+                    To be the trusted next-generation MSP that <span class="text-blue-500">redefines IT support</span> in the Philippines.
+                </h1>
+                <p class="text-xl text-slate-400 mb-10 leading-relaxed font-light italic">
+                    "Making technology simple, secure, and scalable for every business."
+                </p>
+                <div class="flex items-center space-x-8 border-t border-slate-800 pt-10">
+                    <div>
+                        <div class="text-3xl font-bold text-white">24/7</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Proactive</div>
+                    </div>
+                    <div class="w-px h-10 bg-slate-800"></div>
+                    <div>
+                        <div class="text-3xl font-bold text-white">Clear</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Communication</div>
+                    </div>
+                    <div class="w-px h-10 bg-slate-800"></div>
+                    <div>
+                        <div class="text-3xl font-bold text-white">Secure</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">PH SME Focus</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -inset-4 bg-blue-500/5 blur-3xl rounded-full"></div>
+                <div class="card-profile p-8 rounded-[2rem] relative z-10">
+                    <h3 class="text-xl font-bold text-white mb-6">Our Mission</h3>
+                    <p class="text-slate-300 mb-8 leading-relaxed">
+                        At NXTGN-IT, our mission is to deliver cost-effective, scalable IT services that simplify complexity and protect businesses, while providing clear communication and proactive support.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-semibold">Simplify Complexity</h4>
+                                <p class="text-xs text-slate-500">We translate tech-speak into business value.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-blue-500 mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-semibold">Proactive Protection</h4>
+                                <p class="text-xs text-slate-500">Scalable security that grows with your enterprise.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Offer Section -->
+    <section id="offer" class="py-32 bg-[#020617]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <p class="section-tag mb-4">Value Proposition</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white">The NXTGN Business Offer</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Managed Support -->
+                <div class="offer-highlight p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold text-white mb-4">Operational Excellence</h4>
+                    <p class="text-slate-400 text-sm mb-6">We take over the daily burden of IT management. No more hiring internal techs; we provide the entire department.</p>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Remote Monitoring (RMM)</li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Patch Management</li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Asset Tracking</li>
+                    </ul>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div class="offer-highlight p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold text-white mb-4">Risk Mitigation</h4>
+                    <p class="text-slate-400 text-sm mb-6">Securing your digital assets against local and global threats. Compliance with PH Data Privacy Act (DPA).</p>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Endpoint Protection</li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Firewall Management</li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Email Security/Phishing</li>
+                    </ul>
+                </div>
+
+                <!-- Business Continuity -->
+                <div class="offer-highlight p-8 rounded-2xl">
+                    <h4 class="text-xl font-bold text-white mb-4">Continuity & Growth</h4>
+                    <p class="text-slate-400 text-sm mb-6">Disaster recovery plans that ensure your business keeps running even after hardware failure.</p>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Hybrid Cloud Backups</li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Rapid Disaster Recovery</li>
+                        <li class="flex items-center"><i class="fas fa-caret-right text-blue-500 mr-2"></i> Strategic IT Roadmap</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ROI Note -->
+            <div class="mt-16 bg-blue-600/5 border border-blue-500/20 p-8 rounded-3xl text-center">
+                <p class="text-blue-400 font-semibold italic text-lg">
+                    "On average, our clients reduce IT-related downtime by 45% within the first 6 months of onboarding."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-32 bg-slate-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl mx-auto text-center">
+                <p class="section-tag mb-4">Connect With Us</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Ready to Start Your Transformation?</h2>
+                <p class="text-slate-400 text-lg mb-12 leading-relaxed">
+                    Whether you're looking for a formal proposal or just have a quick question about our services, our team is ready to assist.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="mailto:info@nxtgen-it.com" class="flex flex-col items-center p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition duration-300">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 mb-4">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </div>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Email</p>
+                        <p class="text-white font-semibold">info@nxtgen-it.com</p>
+                    </a>
+                    
+                    <a href="tel:9394206695" class="flex flex-col items-center p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition duration-300">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 mb-4">
+                            <i class="fas fa-phone text-xl"></i>
+                        </div>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Call Us</p>
+                        <p class="text-white font-semibold">9394206695</p>
+                    </a>
+
+                    <a href="https://www.nxtgen-it.com" target="_blank" class="flex flex-col items-center p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition duration-300">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 mb-4">
+                            <i class="fas fa-globe text-xl"></i>
+                        </div>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Website</p>
+                        <p class="text-white font-semibold">www.nxtgen-it.com</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="py-12 border-t border-slate-900 bg-[#020617] text-center">
+        <div class="flex items-center justify-center space-x-2 mb-6">
+            <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                <i class="fas fa-microchip text-white text-[10px]"></i>
+            </div>
+            <span class="text-lg font-extrabold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
+        </div>
+        <p class="text-slate-600 text-sm">© 2026 NXTGN-IT Services PH. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
