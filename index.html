@@ -3,143 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NXTGN-IT Services</title>
+    <title>NXTGN-IT Services | Next-Gen Managed IT</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
         :root {
-            --brand-primary: #3b82f6;
+            --brand-blue: #3b82f6;
             --brand-dark: #020617;
+            --brand-accent: #60a5fa;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
             background-color: var(--brand-dark);
+            color: #f8fafc;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black, transparent 80%);
         }
 
         .glass-header {
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .profile-gradient {
-            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent),
-                        linear-gradient(to bottom, #020617, #0f172a);
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
         }
 
-        .card-profile {
-            background: rgba(30, 41, 59, 0.3);
+        .card-premium {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card-profile:hover {
-            border-color: rgba(59, 130, 246, 0.4);
-            background: rgba(30, 41, 59, 0.5);
-            transform: translateY(-8px);
+        .card-premium::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transition: 0.5s;
         }
 
-        .offer-highlight {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border-left: 4px solid #3b82f6;
+        .card-premium:hover::before {
+            left: 100%;
         }
 
-        .section-tag {
-            letter-spacing: 0.2em;
-            font-size: 0.7rem;
-            color: #60a5fa;
-            font-weight: 800;
-            text-transform: uppercase;
+        .card-premium:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to bottom right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-glow {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .input-dark {
+            background: rgba(2, 6, 23, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-dark:focus {
+            border-color: var(--brand-blue);
+            outline: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-anim {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="text-slate-200">
+<body>
+
+    <!-- Background Decoration -->
+    <div class="fixed inset-0 bg-grid pointer-events-none"></div>
+    <div class="hero-glow"></div>
 
     <!-- Navigation -->
     <header class="fixed w-full z-50 glass-header">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/20">
-                    <i class="fas fa-microchip text-white text-xl"></i>
-                </div>
-                <span class="text-2xl font-extrabold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black italic text-white">N</div>
+                <span class="text-xl font-bold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
             </div>
             
-            <nav class="hidden md:flex items-center space-x-10 text-sm font-semibold tracking-wide">
-                <a href="#profile" class="hover:text-blue-500 transition">Profile</a>
-                <a href="#offer" class="hover:text-blue-500 transition">Business Offer</a>
-                <a href="#contact" class="bg-blue-600 px-6 py-2.5 rounded-full text-white hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">Get in Touch</a>
+            <nav class="hidden md:flex items-center space-x-8 text-[13px] font-bold uppercase tracking-widest">
+                <a href="#profile" class="text-slate-400 hover:text-white transition">Profile</a>
+                <a href="#offer" class="text-slate-400 hover:text-white transition">Capabilities</a>
+                <a href="#services" class="text-slate-400 hover:text-white transition">Services</a>
+                <a href="#contact" class="btn-glow bg-blue-600 px-6 py-2.5 rounded-lg text-white hover:bg-blue-500 transition">Get Started</a>
             </nav>
 
-            <button class="md:hidden text-white">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
+            <button class="md:hidden text-white"><i class="fas fa-bars-staggered"></i></button>
         </div>
     </header>
 
-    <!-- Hero / Intro -->
-    <section id="profile" class="pt-40 pb-24 profile-gradient">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="section-tag mb-4">Our Vision</p>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-8">
-                    To be the trusted next-generation MSP that <span class="text-blue-500">redefines IT support</span> in the Philippines.
-                </h1>
-                <p class="text-xl text-slate-400 mb-10 leading-relaxed font-light italic">
-                    "Making technology simple, secure, and scalable for every business."
-                </p>
+    <!-- Hero Section -->
+    <section id="profile" class="relative pt-48 pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 relative z-10">
+                <div class="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest">
+                    Managed IT Support • Philippines
+                </div>
                 
-                <!-- New Simplify Complexity Block -->
-                <div class="bg-blue-600/5 border border-blue-500/20 p-6 rounded-2xl mb-10">
-                    <h3 class="text-blue-400 font-bold flex items-center mb-2">
-                        <i class="fas fa-cog mr-2"></i> Simplify Complexity
-                    </h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">
-                        We translate tech-speak into business value. Technology shouldn’t feel overwhelming. Our approach is to break down complex IT systems into clear, actionable solutions that align with your business goals. We handle the technical details and present them in plain language so you can make confident decisions.
+                <h1 class="text-6xl md:text-7xl font-extrabold leading-tight text-gradient">
+                    Redefining IT <br>For The <span class="text-blue-500">Next Gen.</span>
+                </h1>
+                
+                <div class="space-y-4 max-w-lg">
+                    <p class="text-lg text-slate-300 leading-relaxed font-semibold">
+                        We bridge the gap between complex infrastructure and your business growth. 
+                    </p>
+                    <p class="text-base text-slate-400 leading-relaxed">
+                        NXTGN-IT provides <span class="text-white font-medium">simple, secure, and always-on support</span> tailored for modern enterprises. By consolidating your technical operations under our proactive care, we eliminate the friction of hardware failure and network instability. 
+                    </p>
+                    <p class="text-base text-slate-400 leading-relaxed">
+                        Our expert team handles the back-end complexities—from server optimization to seamless hardware integration—allowing your staff to focus entirely on innovation and high-value results.
                     </p>
                 </div>
 
-                <div class="flex items-center space-x-8 border-t border-slate-800 pt-10">
-                    <div>
-                        <div class="text-3xl font-bold text-white">24/7</div>
-                        <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Proactive</div>
-                    </div>
-                    <div class="w-px h-10 bg-slate-800"></div>
-                    <div>
-                        <div class="text-3xl font-bold text-white">Clear</div>
-                        <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">Communication</div>
-                    </div>
-                    <div class="w-px h-10 bg-slate-800"></div>
-                    <div>
-                        <div class="text-3xl font-bold text-white">Secure</div>
-                        <div class="text-xs text-slate-500 uppercase tracking-widest mt-1">PH SME Focus</div>
-                    </div>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#contact" class="btn-glow px-8 py-4 bg-blue-600 text-white font-bold rounded-xl flex items-center space-x-2">
+                        <span>Request a Quote</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#services" class="px-8 py-4 bg-slate-800/50 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-800 transition">
+                        Our Expertise
+                    </a>
                 </div>
             </div>
-            <div class="relative">
-                <div class="absolute -inset-4 bg-blue-500/5 blur-3xl rounded-full"></div>
-                <div class="card-profile p-8 rounded-[2rem] relative z-10">
-                    <h3 class="text-xl font-bold text-white mb-6">Our Mission</h3>
-                    <p class="text-slate-300 mb-8 leading-relaxed">
-                        At NXTGN-IT, our mission is to deliver cost-effective, scalable IT services that simplify complexity and protect businesses, while providing clear communication and proactive support.
-                    </p>
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <i class="fas fa-server text-blue-500 mt-1"></i>
-                            <div>
-                                <h4 class="text-white font-semibold">Reliable Infrastructure</h4>
-                                <p class="text-xs text-slate-500">Future‑proof systems built to support your business demands.</p>
-                            </div>
+
+            <div class="relative hidden lg:block">
+                <div class="float-anim card-premium p-10 rounded-3xl border-blue-500/20 backdrop-blur-xl">
+                    <div class="flex items-center justify-between mb-10">
+                        <div class="space-y-1">
+                            <h3 class="text-2xl font-bold">Proactive Care</h3>
+                            <p class="text-slate-500 text-sm">Real-time infrastructure monitoring</p>
                         </div>
-                        <div class="flex items-start space-x-4">
-                            <i class="fas fa-headset text-blue-500 mt-1"></i>
-                            <div>
-                                <h4 class="text-white font-semibold">Always‑On Support</h4>
-                                <p class="text-xs text-slate-500">Your IT partner, day and night, ensuring zero downtime.</p>
+                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fas fa-pulse"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-blue-600 w-[94%] animate-pulse"></div>
+                        </div>
+                        <div class="flex justify-between text-xs font-bold uppercase tracking-widest text-slate-500">
+                            <span>System Health</span>
+                            <span class="text-blue-500">99.9% Uptime</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 pt-4">
+                            <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-white/5">
+                                <div class="text-xl font-bold">24/7</div>
+                                <div class="text-[10px] text-slate-500 uppercase">Support</div>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-white/5">
+                                <div class="text-xl font-bold">15m</div>
+                                <div class="text-[10px] text-slate-500 uppercase">Response</div>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-white/5">
+                                <div class="text-xl font-bold">100%</div>
+                                <div class="text-[10px] text-slate-500 uppercase">Secure</div>
                             </div>
                         </div>
                     </div>
@@ -148,108 +215,214 @@
         </div>
     </section>
 
-    <!-- Business Offer Section -->
-    <section id="offer" class="py-32 bg-[#020617]">
+    <!-- Value Proposition Section -->
+    <section id="offer" class="py-24 relative border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20">
-                <p class="section-tag mb-4">Core Competencies</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white">The NXTGN Business Offer</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Value Cards -->
+                <div class="card-premium group p-8 rounded-3xl">
+                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="fas fa-clock-rotate-left text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-4">Less downtime and fewer disruptions</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Proactive maintenance ensures your systems stay active and your business keeps moving.
+                    </p>
+                </div>
+                <div class="card-premium group p-8 rounded-3xl">
+                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="fas fa-bolt-lightning text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-4">Faster issue resolution</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Rapid-response support that tackles IT problems before they impact your workflow.
+                    </p>
+                </div>
+                <div class="card-premium group p-8 rounded-3xl">
+                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="fas fa-users-gear text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-4">More productive employees</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Enabling your team to stay focused on their work without technical hurdles.
+                    </p>
+                </div>
+                <div class="card-premium group p-8 rounded-3xl">
+                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-4">Better use of resources</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Optimizing your time and technology budget for maximum business impact.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services Section -->
+    <section id="services" class="py-32 relative bg-slate-900/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div class="space-y-4">
+                    <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-500">Service Portfolio</h2>
+                    <p class="text-4xl md:text-5xl font-extrabold">Comprehensive IT Support.</p>
+                </div>
+                <p class="text-slate-400 max-w-xs text-sm leading-relaxed">
+                    End-to-end technical solutions designed to scale with your organization.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Windows Server Setup -->
-                <div class="offer-highlight p-8 rounded-2xl">
-                    <div class="text-blue-500 mb-4 text-2xl"><i class="fab fa-windows"></i></div>
-                    <h4 class="text-xl font-bold text-white mb-4">Windows Server Setup & Active Directory</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">We design and deploy secure, scalable Windows Server environments tailored to your business needs. Our team configures Active Directory (AD) to centralize user management and enforce security policies.</p>
+                <!-- Support -->
+                <div class="card-premium p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">IT Troubleshooting</h4>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">Full-spectrum diagnostic and repair services to resolve hardware and software conflicts instantly.</p>
                 </div>
 
-                <!-- Firewall Implementation -->
-                <div class="offer-highlight p-8 rounded-2xl">
-                    <div class="text-blue-500 mb-4 text-2xl"><i class="fas fa-shield-alt"></i></div>
-                    <h4 class="text-xl font-bold text-white mb-4">Firewall Implementation & Security</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Protect your business from cyber threats with enterprise‑grade firewall solutions. We configure and manage firewalls to safeguard your network against unauthorized access and malware.</p>
+                <!-- Windows Server -->
+                <div class="card-premium p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">Windows Server Setup</h4>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">Professional installation, configuration, and optimization of server environments for peak performance.</p>
                 </div>
 
-                <!-- Office Hardware Setup -->
-                <div class="offer-highlight p-8 rounded-2xl">
-                    <div class="text-blue-500 mb-4 text-2xl"><i class="fas fa-desktop"></i></div>
-                    <h4 class="text-xl font-bold text-white mb-4">Office Hardware Setup</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">From workstations and laptops to printers and networking equipment, we handle the complete setup of your office hardware. We ensure devices are optimized for productivity from day one.</p>
+                <!-- Network -->
+                <div class="card-premium p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">Managed Networks</h4>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">Seamless connectivity through intelligent network design, switching, and routing management.</p>
                 </div>
 
-                <!-- Managed Network Services -->
-                <div class="offer-highlight p-8 rounded-2xl">
-                    <div class="text-blue-500 mb-4 text-2xl"><i class="fas fa-network-wired"></i></div>
-                    <h4 class="text-xl font-bold text-white mb-4">Managed Network Services</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">We provide end‑to‑end network management, including design, monitoring, and optimization. Our services guarantee reliable connectivity and secure data transfer.</p>
+                <!-- Firewall -->
+                <div class="card-premium p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">Firewall Management</h4>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">Advanced perimeter security and rule management to safeguard your internal data from unauthorized access.</p>
                 </div>
 
-                <!-- 24/7 IT Support -->
-                <div class="offer-highlight p-8 rounded-2xl">
-                    <div class="text-blue-500 mb-4 text-2xl"><i class="fas fa-clock"></i></div>
-                    <h4 class="text-xl font-bold text-white mb-4">24/7 IT Support</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Round‑the‑clock support means your business never stops. Our dedicated helpdesk and on‑call engineers are available 24/7 to resolve issues quickly.</p>
+                <!-- Hardware -->
+                <div class="card-premium p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">Hardware Deployment</h4>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">Strategic office hardware rollout, including workstations, printers, and peripheral integration.</p>
                 </div>
 
-                <!-- IT Personnel Support -->
-                <div class="offer-highlight p-8 rounded-2xl">
-                    <div class="text-blue-500 mb-4 text-2xl"><i class="fas fa-users-cog"></i></div>
-                    <h4 class="text-xl font-bold text-white mb-4">IT Personnel Support</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed">Augment your team with skilled IT professionals. We provide on‑site and remote personnel to assist with daily operations and project implementation.</p>
+                <!-- Monitoring -->
+                <div class="card-premium p-8 rounded-3xl">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4 class="text-lg font-bold">24x7 Monitoring</h4>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed">Round-the-clock systems oversight and dedicated IT personnel assistance whenever you need it.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Us Section -->
-    <section id="contact" class="py-32 bg-slate-950 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <p class="section-tag mb-4">Connect With Us</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Ready to Start Your Transformation?</h2>
-                <p class="text-slate-400 text-lg mb-12 leading-relaxed">
-                    Whether you're looking for a formal proposal or just have a quick question about our services, our team is ready to assist.
-                </p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative bg-slate-900/30">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            <div class="space-y-10">
+                <div class="space-y-4">
+                    <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-500">Get in Touch</h2>
+                    <p class="text-4xl font-extrabold leading-tight">Request specialized support for your infrastructure.</p>
+                </div>
                 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="flex flex-col items-center p-8 rounded-2xl bg-slate-900 border border-slate-800">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 mb-4">
-                            <i class="fas fa-envelope text-xl"></i>
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-6">
+                        <div class="mt-1 w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-blue-500 shrink-0">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Email</p>
-                        <p class="text-white font-semibold">info@nxtgn-it.com</p>
+                        <div>
+                            <h5 class="font-bold text-white uppercase text-xs tracking-widest mb-1">Email Us</h5>
+                            <p class="text-slate-400">info@nxtgen-it.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-6">
+                        <div class="mt-1 w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-blue-500 shrink-0">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-white uppercase text-xs tracking-widest mb-1">Call Support</h5>
+                            <p class="text-slate-400">+63 939 420 6695</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-premium p-8 rounded-3xl border-white/5 shadow-2xl">
+                <form action="https://formspree.io/f/info@nxtgen-it.com" method="POST" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl input-dark text-sm" placeholder="Juan Dela Cruz">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Business Email</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl input-dark text-sm" placeholder="juan@company.ph">
+                        </div>
                     </div>
                     
-                    <div class="flex flex-col items-center p-8 rounded-2xl bg-slate-900 border border-slate-800">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 mb-4">
-                            <i class="fas fa-phone text-xl"></i>
-                        </div>
-                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Call Us</p>
-                        <p class="text-white font-semibold">9394206695</p>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Service Required</label>
+                        <select name="service" class="w-full px-4 py-3 rounded-xl input-dark text-sm">
+                            <option>Comprehensive IT Support</option>
+                            <option>Windows Server Setup</option>
+                            <option>Managed Network Services</option>
+                            <option>Firewall Configuration</option>
+                        </select>
                     </div>
 
-                    <div class="flex flex-col items-center p-8 rounded-2xl bg-slate-900 border border-slate-800">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-full flex items-center justify-center text-blue-500 mb-4">
-                            <i class="fas fa-globe text-xl"></i>
-                        </div>
-                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Website</p>
-                        <p class="text-white font-semibold">www.nxtgn-it.com</p>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Your Message</label>
+                        <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-xl input-dark text-sm" placeholder="Tell us about your IT requirements..."></textarea>
                     </div>
-                </div>
+
+                    <button type="submit" class="w-full btn-glow bg-blue-600 py-4 rounded-xl font-bold text-white tracking-wide uppercase text-xs flex items-center justify-center space-x-3">
+                        <span>Initiate Inquiry</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Simple Footer -->
-    <footer class="py-12 border-t border-slate-900 bg-[#020617] text-center">
-        <div class="flex items-center justify-center space-x-2 mb-6">
-            <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
-                <i class="fas fa-microchip text-white text-[10px]"></i>
-            </div>
-            <span class="text-lg font-extrabold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="flex items-center justify-center space-x-2 mb-8">
+            <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center font-black italic text-[10px] text-white">N</div>
+            <span class="text-sm font-bold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
         </div>
-        <p class="text-slate-600 text-sm">© 2026 NXTGN-IT Services PH. All Rights Reserved.</p>
+        <div class="flex justify-center space-x-6 text-xs text-slate-500 font-bold uppercase tracking-widest mb-6">
+            <a href="#" class="hover:text-white">LinkedIn</a>
+            <a href="#" class="hover:text-white">Facebook</a>
+            <a href="#" class="hover:text-white">Privacy</a>
+        </div>
+        <p class="text-[10px] text-slate-600 uppercase tracking-widest">© 2026 NXTGN-IT Services PH. All Rights Reserved.</p>
     </footer>
 
 </body>
