@@ -1,493 +1,1860 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NXTGN-IT Services | Next-Gen Managed IT</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        
-        :root {
-            --brand-blue: #3b82f6;
-            --brand-dark: #020617;
-            --brand-accent: #60a5fa;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NXTGN-IT Services | White-Label MSP &amp; Managed IT Support</title>
+  <meta name="description" content="NXTGN-IT Services provides white-label MSP support, network operations, infrastructure management, and managed IT services for MSPs and businesses in the Philippines and worldwide." />
+  <meta name="keywords" content="white-label MSP support, outsourced NOC services, network operations support, managed IT services Philippines, network infrastructure support, MSP engineering support" />
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-            background-color: var(--brand-dark);
-            color: #f8fafc;
-        }
+  <!-- Google Fonts: Inter & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
 
-        /* Animated Background Grid */
-        .bg-grid {
-            background-image: linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse at center, black, transparent 80%);
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#0A1322',
+              900: '#101D32',
+              800: '#182946',
+              700: '#22385E',
+            },
+            brandBlue: {
+              600: '#2563EB',
+              700: '#1D4ED8',
+              50: '#EFF6FF',
+              100: '#DBEAFE',
+            },
+            surface: '#F4F7FB',
+            neutralText: '#475569',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
 
-        .glass-header {
-            background: rgba(2, 6, 23, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
+  <style>
+    /* Enterprise Typography & Subtle Micro-interactions */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F4F7FB;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
 
-        .hero-glow {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            filter: blur(60px);
-            z-index: -1;
-        }
+    h1, h2, h3, .font-display {
+      font-family: 'Manrope', sans-serif;
+    }
 
-        .card-premium {
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-        }
+    /* Subtle architectural grid background for hero sections */
+    .tech-grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
 
-        .card-premium::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-            transition: 0.5s;
-        }
+    /* View transitions */
+    .page-view {
+      display: none;
+      animation: fadeSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
 
-        .card-premium:hover::before {
-            left: 100%;
-        }
+    .page-view.active {
+      display: block;
+    }
 
-        .card-premium:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(59, 130, 246, 0.5);
-            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
-        }
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .text-gradient {
-            background: linear-gradient(to bottom right, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* Card elevation transition */
+    .enterprise-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
 
-        .btn-glow {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .input-dark {
-            background: rgba(2, 6, 23, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: border-color 0.3s ease;
-        }
-
-        .input-dark:focus {
-            border-color: var(--brand-blue);
-            outline: none;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .float-anim {
-            animation: float 6s ease-in-out infinite;
-        }
-    </style>
+    .enterprise-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -8px rgba(16, 29, 50, 0.08);
+      border-color: #CBD5E1;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col antialiased selection:bg-brandBlue-600 selection:text-white">
 
-    <!-- Background Decoration -->
-    <div class="fixed inset-0 bg-grid pointer-events-none"></div>
-    <div class="hero-glow"></div>
+  <!-- ===================================================================== -->
+  <!-- STICKY NAVIGATION BAR                                                 -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-40 bg-navy-900/95 backdrop-blur-md border-b border-white/10 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Brand Logo -->
+        <button
+          type="button"
+          onclick="navigateTo('home')"
+          class="flex items-center gap-3 text-left group focus:outline-none rounded-lg py-1"
+          aria-label="NXTGN-IT Services Home"
+        >
+          <!-- Geometric Network Node Icon -->
+          <div class="w-10 h-10 rounded-xl bg-brandBlue-600/20 border border-brandBlue-600/40 flex items-center justify-center group-hover:bg-brandBlue-600/30 transition-colors">
+            <svg class="w-6 h-6 text-blue-400" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+              <rect x="18" y="3" width="7" height="7" rx="1.5" stroke="#60A5FA" stroke-width="2" />
+              <rect x="18" y="18" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+              <rect x="3" y="18" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+              <path d="M10 6.5H18M21.5 10V18M18 21.5H10M6.5 18V10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+              <circle cx="14" cy="14" r="2.25" fill="#3B82F6" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-white block leading-none">
+              NXTGN-IT <span class="text-blue-400 font-semibold">Services</span>
+            </span>
+            <span class="text-[11px] text-slate-400 tracking-wide hidden sm:block mt-1">
+              Working Behind Your Brand
+            </span>
+          </div>
+        </button>
 
-    <!-- Navigation -->
-    <header class="fixed w-full z-50 glass-header">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-black italic text-white">N</div>
-                <span class="text-xl font-bold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
-            </div>
-            
-            <nav class="hidden md:flex items-center space-x-8 text-[13px] font-bold uppercase tracking-widest">
-                <a href="#profile" class="text-slate-400 hover:text-white transition">Profile</a>
-                <a href="#offer" class="text-slate-400 hover:text-white transition">Capabilities</a>
-                <a href="#services" class="text-slate-400 hover:text-white transition">Services</a>
-                <a href="#contact" class="btn-glow bg-blue-600 px-6 py-2.5 rounded-lg text-white hover:bg-blue-500 transition">Get Started</a>
-            </nav>
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+          <button type="button" data-nav="home" onclick="navigateTo('home')" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors">
+            Home
+          </button>
+          <button type="button" data-nav="whitelabel" onclick="navigateTo('whitelabel')" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors">
+            White-Label MSP
+          </button>
+          <button type="button" data-nav="managed-it" onclick="navigateTo('managed-it')" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors">
+            Managed IT Services
+          </button>
+          <button type="button" data-nav="company" onclick="navigateTo('company')" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors">
+            Our Company
+          </button>
+          <button type="button" data-nav="contact" onclick="navigateTo('contact')" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors">
+            Contact
+          </button>
+        </nav>
 
-            <button class="md:hidden text-white"><i class="fas fa-bars-staggered"></i></button>
+        <!-- Desktop Action CTA -->
+        <div class="hidden lg:flex items-center gap-3">
+          <button
+            type="button"
+            onclick="navigateTo('contact')"
+            class="inline-flex items-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-navy-900"
+          >
+            <span>Contact Our Team</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="profile" class="relative pt-48 pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8 relative z-10">
-                <div class="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-widest">
-                    Managed IT Support • Philippines
-                </div>
-                
-                <h1 class="text-6xl md:text-7xl font-extrabold leading-tight text-gradient">
-                    Redefining IT <br>For The <span class="text-blue-500">Next Gen.</span>
-                </h1>
-                
-                <div class="space-y-4 max-w-lg">
-                    <p class="text-lg text-slate-300 leading-relaxed font-semibold">
-                        We bridge the gap between complex infrastructure and your business growth. 
-                    </p>
-                    <p class="text-base text-slate-400 leading-relaxed">
-                        NXTGN-IT provides <span class="text-white font-medium">simple, secure, and always-on support</span> tailored for modern enterprises. By consolidating your technical operations under our proactive care, we eliminate the friction of hardware failure and network instability. 
-                    </p>
-                    <p class="text-base text-slate-400 leading-relaxed">
-                        Our expert team handles the back-end complexities—from server optimization to seamless hardware integration—allowing your staff to focus entirely on innovation and high-value results.
-                    </p>
-                </div>
-
-                <div class="flex flex-wrap gap-4 pt-4">
-                    <a href="#contact" class="btn-glow px-8 py-4 bg-blue-600 text-white font-bold rounded-xl flex items-center space-x-2">
-                        <span>Request a Quote</span>
-                        <i class="fas fa-arrow-right text-xs"></i>
-                    </a>
-                    <a href="#services" class="px-8 py-4 bg-slate-800/50 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-800 transition">
-                        Our Expertise
-                    </a>
-                </div>
-            </div>
-
-            <div class="relative hidden lg:block">
-                <div class="float-anim card-premium p-10 rounded-3xl border-blue-500/20 backdrop-blur-xl">
-                    <div class="flex items-center justify-between mb-10">
-                        <div class="space-y-1">
-                            <h3 class="text-2xl font-bold">Proactive Care</h3>
-                            <p class="text-slate-500 text-sm">Real-time infrastructure monitoring</p>
-                        </div>
-                        <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fas fa-pulse"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <div class="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-blue-600 w-[94%] animate-pulse"></div>
-                        </div>
-                        <div class="flex justify-between text-xs font-bold uppercase tracking-widest text-slate-500">
-                            <span>System Health</span>
-                            <span class="text-blue-500">99.9% Uptime</span>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4 pt-4">
-                            <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-white/5">
-                                <div class="text-xl font-bold">24/7</div>
-                                <div class="text-[10px] text-slate-500 uppercase">Support</div>
-                            </div>
-                            <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-white/5">
-                                <div class="text-xl font-bold">15m</div>
-                                <div class="text-[10px] text-slate-500 uppercase">Response</div>
-                            </div>
-                            <div class="bg-slate-900/50 p-4 rounded-xl text-center border border-white/5">
-                                <div class="text-xl font-bold">100%</div>
-                                <div class="text-[10px] text-slate-500 uppercase">Secure</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex lg:hidden">
+          <button
+            type="button"
+            id="mobile-menu-btn"
+            onclick="toggleMobileMenu()"
+            class="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Toggle navigation menu"
+          >
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-navy-900 border-t border-white/10 px-4 pt-3 pb-5 space-y-1.5">
+      <button type="button" data-nav="home" onclick="navigateTo('home'); toggleMobileMenu(false);" class="nav-link-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-white">
+        Home
+      </button>
+      <button type="button" data-nav="whitelabel" onclick="navigateTo('whitelabel'); toggleMobileMenu(false);" class="nav-link-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-white">
+        White-Label MSP
+      </button>
+      <button type="button" data-nav="managed-it" onclick="navigateTo('managed-it'); toggleMobileMenu(false);" class="nav-link-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-white">
+        Managed IT Services
+      </button>
+      <button type="button" data-nav="company" onclick="navigateTo('company'); toggleMobileMenu(false);" class="nav-link-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-white">
+        Our Company
+      </button>
+      <button type="button" data-nav="contact" onclick="navigateTo('contact'); toggleMobileMenu(false);" class="nav-link-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-white">
+        Contact
+      </button>
+      <div class="pt-2">
+        <button
+          type="button"
+          onclick="navigateTo('contact'); toggleMobileMenu(false);"
+          class="w-full flex items-center justify-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-5 py-3.5 rounded-xl transition-colors"
+        >
+          <span>Contact Our Team</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT AREA (CLIENT-SIDE VIEW SWITCHING)                        -->
+  <!-- ===================================================================== -->
+  <main class="flex-grow">
+
+    <!-- =================================================================== -->
+    <!-- VIEW 1: HOME                                                        -->
+    <!-- =================================================================== -->
+    <section id="view-home" class="page-view active" aria-label="Home">
+      <!-- Hero Section -->
+      <div class="relative bg-navy-900 tech-grid-bg text-white overflow-hidden border-b border-white/10">
+        <!-- Subtle Infrastructure Node Topology SVG Accent -->
+        <svg class="absolute right-0 top-0 h-full w-1/2 opacity-15 pointer-events-none hidden md:block" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="440" cy="110" r="5" fill="#60A5FA" />
+          <circle cx="310" cy="190" r="4" fill="#93C5FD" />
+          <circle cx="510" cy="250" r="6" fill="#3B82F6" />
+          <circle cx="370" cy="340" r="5" fill="#60A5FA" />
+          <circle cx="220" cy="290" r="4" fill="#93C5FD" />
+          <circle cx="480" cy="410" r="4" fill="#60A5FA" />
+          <path d="M440 110L310 190L510 250L370 340L220 290L310 190" stroke="#60A5FA" stroke-width="1.2" />
+          <path d="M440 110L510 250L480 410L370 340" stroke="#3B82F6" stroke-width="1.2" stroke-dasharray="4 4" />
+          <rect x="424" y="94" width="32" height="32" rx="8" stroke="#60A5FA" stroke-width="1" />
+          <rect x="494" y="234" width="32" height="32" rx="8" stroke="#3B82F6" stroke-width="1" />
+        </svg>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-6">
+              <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+              MANAGED IT SERVICES &amp; WHITE-LABEL MSP SUPPORT
+            </div>
+
+            <h1 class="font-display text-3xl sm:text-5xl lg:text-[3.35rem] font-extrabold tracking-tight text-white leading-[1.15] mb-6">
+              Reliable IT Support. Stronger Partnerships. Better Business Operations.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-9 max-w-2xl">
+              We help managed service providers and businesses manage their IT infrastructure, strengthen operations, and deliver dependable technical support.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <button
+                type="button"
+                onclick="scrollToElement('audience-entry-points')"
+                class="inline-flex items-center justify-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-blue-950/40 transition-all text-base"
+              >
+                <span>Explore Our Services</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                onclick="navigateTo('contact')"
+                class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-xl transition-all text-base"
+              >
+                <span>Contact Our Team</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Core Positioning Strip -->
+          <div class="mt-14 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-white">Your Technology Partner</p>
+                <p class="text-slate-400 mt-0.5">Working behind your brand with clear operating procedures.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-white">International &amp; Local Reach</p>
+                <p class="text-slate-400 mt-0.5">Supporting MSPs in the US, Australia &amp; globally, plus businesses in the Philippines.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/15 text-blue-400 flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-white">Practical Engineering</p>
+                <p class="text-slate-400 mt-0.5">Grounded in real-world network operations, infrastructure, and incident response.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Audience Entry Points -->
+      <div id="audience-entry-points" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">How We Partner</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+            Two Dedicated Service Pathways
+          </h2>
+          <p class="text-neutralText mt-3 text-base">
+            Whether you are scaling a managed service provider practice or keeping local business operations running smoothly, choose the path tailored to your organization.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Primary Growth Proposition: For International MSPs -->
+          <div class="enterprise-card relative bg-white rounded-2xl border-2 border-brandBlue-600/80 p-8 sm:p-10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brandBlue-50 text-brandBlue-600 text-xs font-bold uppercase tracking-wide">
+                  Primary International Focus
+                </span>
+                <span class="text-xs font-medium text-slate-500">US &bull; Australia &bull; Global MSPs</span>
+              </div>
+
+              <h3 class="font-display text-2xl font-bold text-navy-900">
+                For International MSPs
+              </h3>
+              <p class="text-brandBlue-600 font-semibold text-sm mt-1">
+                “An extension of your team, working behind your brand.”
+              </p>
+
+              <p class="text-neutralText mt-4 leading-relaxed">
+                White-label engineering and NOC support for MSPs that need additional technical capacity. We integrate with your tools, escalation workflows, and service standards under strict contractual confidentiality.
+              </p>
+
+              <ul class="mt-6 space-y-2.5 text-sm text-slate-700">
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-brandBlue-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Shared NOC Support &amp; L1/L2 Technical Assistance</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-brandBlue-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Dedicated Engineers &amp; Network/Server Administration</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-brandBlue-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Agreed Extended-Hours or Overnight Coverage</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-100">
+              <button
+                type="button"
+                onclick="navigateTo('whitelabel')"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
+              >
+                <span>Explore White-Label MSP Services</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Secondary Pathway: For Philippine Businesses -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-navy-900 text-xs font-bold uppercase tracking-wide">
+                  Direct Business Support
+                </span>
+                <span class="text-xs font-medium text-slate-500">Philippines</span>
+              </div>
+
+              <h3 class="font-display text-2xl font-bold text-navy-900">
+                For Philippine Businesses
+              </h3>
+              <p class="text-navy-700 font-semibold text-sm mt-1">
+                “Practical IT support that keeps your business running.”
+              </p>
+
+              <p class="text-neutralText mt-4 leading-relaxed">
+                Managed IT, network, infrastructure, and user support for local businesses. Focus on running and growing your business while our engineers handle day-to-day technical support and systems administration.
+              </p>
+
+              <ul class="mt-6 space-y-2.5 text-sm text-slate-700">
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-navy-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Managed IT Helpdesk &amp; Desktop/User Support</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-navy-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Network, Firewall &amp; Wireless Infrastructure Management</span>
+                </li>
+                <li class="flex items-center gap-2.5">
+                  <svg class="w-4 h-4 text-navy-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <span>Windows Server, Active Directory &amp; IT Security Support</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-100">
+              <button
+                type="button"
+                onclick="navigateTo('managed-it')"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
+              >
+                <span>Explore Managed IT Services</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Homepage Service Highlights -->
+      <div class="bg-white border-y border-slate-200/80 py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl mb-12">
+            <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Core Capabilities</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+              Core Technical Service Areas
+            </h2>
+            <p class="text-neutralText mt-3">
+              Dependable operational coverage across networks, servers, user support, and infrastructure security.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1: Network Operations -->
+            <div class="enterprise-card bg-surface rounded-2xl border border-slate-200 p-6">
+              <div class="w-11 h-11 rounded-xl bg-brandBlue-600 text-white flex items-center justify-center mb-5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Network Operations</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                Monitoring, troubleshooting, network administration, and escalation support.
+              </p>
+            </div>
+
+            <!-- Card 2: Infrastructure Management -->
+            <div class="enterprise-card bg-surface rounded-2xl border border-slate-200 p-6">
+              <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center mb-5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                </svg>
+              </div>
+              <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Infrastructure Management</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                Server, virtualization, and infrastructure support.
+              </p>
+            </div>
+
+            <!-- Card 3: IT Helpdesk Support -->
+            <div class="enterprise-card bg-surface rounded-2xl border border-slate-200 p-6">
+              <div class="w-11 h-11 rounded-xl bg-brandBlue-600 text-white flex items-center justify-center mb-5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 class="font-display text-lg font-bold text-navy-900 mb-2">IT Helpdesk Support</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                Technical assistance, incident management, and user support.
+              </p>
+            </div>
+
+            <!-- Card 4: Security & Network Support -->
+            <div class="enterprise-card bg-surface rounded-2xl border border-slate-200 p-6">
+              <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center mb-5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Security &amp; Network Support</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                Firewall administration, network security support, and infrastructure monitoring.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose NXTGN-IT? -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Our Approach</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+              Why Choose NXTGN-IT?
+            </h2>
+            <p class="text-neutralText mt-4 leading-relaxed">
+              We operate as a dependable technical partner rather than an impersonal vendor—bringing clear communication, structured escalation, and accountable delivery to every engagement.
+            </p>
+            <div class="mt-6">
+              <button
+                type="button"
+                onclick="navigateTo('company')"
+                class="inline-flex items-center gap-2 text-brandBlue-600 hover:text-brandBlue-700 font-semibold text-sm"
+              >
+                <span>Learn more about our company &amp; process</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-6">
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Practical technical experience</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                An approach grounded in real-world network operations, infrastructure support, and incident management.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6">
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Flexible service arrangements</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                Support structured around each MSP’s or business’s requirements, tools, and agreed coverage hours.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6">
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">A partnership mindset</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                Accountability, clear communication, and long-term working relationships built on trust.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-6">
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Scalable support</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                A service model designed to grow smoothly as your business and technical requirements expand.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA Banner -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div class="bg-navy-900 tech-grid-bg rounded-3xl p-8 sm:p-12 text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          <div class="max-w-2xl">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold">
+              Ready to Strengthen Your IT Operations?
+            </h2>
+            <p class="text-slate-300 mt-3 text-base leading-relaxed">
+              Tell us about your MSP support requirements or business infrastructure needs. Our team will review your scope and schedule a practical consultation.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
+            <button
+              type="button"
+              onclick="startInquiry('MSP Partnership')"
+              class="inline-flex items-center justify-center bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
+            >
+              Discuss an MSP Partnership
+            </button>
+            <button
+              type="button"
+              onclick="startInquiry('Business IT Support')"
+              class="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
+            >
+              Request Business IT Support
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Value Proposition Section -->
-    <section id="offer" class="py-24 relative border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Value Cards -->
-                <div class="card-premium group p-8 rounded-3xl">
-                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                        <i class="fas fa-clock-rotate-left text-2xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-4">Less downtime and fewer disruptions</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Proactive maintenance ensures your systems stay active and your business keeps moving.
-                    </p>
-                </div>
-                <div class="card-premium group p-8 rounded-3xl">
-                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                        <i class="fas fa-bolt-lightning text-2xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-4">Faster issue resolution</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Rapid-response support that tackles IT problems before they impact your workflow.
-                    </p>
-                </div>
-                <div class="card-premium group p-8 rounded-3xl">
-                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                        <i class="fas fa-users-gear text-2xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-4">More productive employees</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Enabling your team to stay focused on their work without technical hurdles.
-                    </p>
-                </div>
-                <div class="card-premium group p-8 rounded-3xl">
-                    <div class="w-14 h-14 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 mb-8 transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                        <i class="fas fa-chart-line text-2xl"></i>
-                    </div>
-                    <h4 class="text-lg font-bold mb-4">Better use of resources</h4>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Optimizing your time and technology budget for maximum business impact.
-                    </p>
-                </div>
+    <!-- =================================================================== -->
+    <!-- VIEW 2: WHITE-LABEL MSP                                             -->
+    <!-- =================================================================== -->
+    <section id="view-whitelabel" class="page-view" aria-label="White-Label MSP Services">
+      <!-- Page Hero -->
+      <div class="bg-navy-900 tech-grid-bg text-white border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-5">
+              FOR INTERNATIONAL MANAGED SERVICE PROVIDERS (US, AUSTRALIA &amp; GLOBAL)
             </div>
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              White-Label IT Support for Managed Service Providers
+            </h1>
+            <p class="text-lg text-slate-300 leading-relaxed mt-5">
+              Your clients rely on you. We’re here to help you support them. NXTGN-IT provides technical resources and operational support for MSPs that need additional engineering capacity without the cost and complexity of expanding their internal teams. We work behind the scenes as an extension of your business, following your processes, escalation procedures, and service expectations.
+            </p>
+            <div class="mt-8">
+              <button
+                type="button"
+                onclick="startInquiry('MSP Partnership')"
+                class="inline-flex items-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-md transition-colors text-sm sm:text-base"
+              >
+                <span>Discuss a White-Label Partnership</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Detailed Services Section -->
-    <section id="services" class="py-32 relative bg-slate-900/10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div class="space-y-4">
-                    <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-500">Service Portfolio</h2>
-                    <p class="text-4xl md:text-5xl font-extrabold">Comprehensive IT Support.</p>
+      <!-- 6 White-Label Service Offerings -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="max-w-2xl mb-12">
+          <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Service Capabilities</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+            White-Label Engineering &amp; NOC Services
+          </h2>
+          <p class="text-neutralText mt-3">
+            Flexible technical capacity delivered seamlessly under your brand and standard operating procedures.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 1. Shared NOC Support -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-7">
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Shared NOC Support</h3>
+            <p class="text-sm text-neutralText leading-relaxed">
+              Network monitoring, alert handling, troubleshooting, and escalation aligned with your RMM and PSA workflows.
+            </p>
+          </div>
+
+          <!-- 2. Dedicated Engineers -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-7">
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Dedicated Engineers</h3>
+            <p class="text-sm text-neutralText leading-relaxed">
+              Technical resources assigned specifically to support your MSP’s daily operations, projects, and client environments.
+            </p>
+          </div>
+
+          <!-- 3. L1/L2 Support -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-7">
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">L1/L2 Support</h3>
+            <p class="text-sm text-neutralText leading-relaxed">
+              End-user and infrastructure troubleshooting within your agreed service scope, documentation standards, and ticket queues.
+            </p>
+          </div>
+
+          <!-- 4. Network Administration -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-7">
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Network Administration</h3>
+            <p class="text-sm text-neutralText leading-relaxed">
+              Routing, switching, firewall configuration, and wireless network support across multi-site client deployments.
+            </p>
+          </div>
+
+          <!-- 5. Server Support -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-7">
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">Server Support</h3>
+            <p class="text-sm text-neutralText leading-relaxed">
+              Windows Server administration, virtualization support, patching coordination, and core infrastructure assistance.
+            </p>
+          </div>
+
+          <!-- 6. After-Hours Support -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-7">
+            <div class="w-10 h-10 rounded-xl bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-lg font-bold text-navy-900 mb-2">After-Hours Support</h3>
+            <p class="text-sm text-neutralText leading-relaxed">
+              Agreed extended-hours or overnight coverage and incident escalation, structured around your contracted service hours and scope.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Partner with NXTGN-IT & Contractual Assurance -->
+      <div class="bg-white border-t border-slate-200 py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div class="lg:col-span-7">
+              <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">MSP Partnership Model</span>
+              <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2 mb-6">
+                Why Partner with NXTGN-IT?
+              </h2>
+
+              <ul class="space-y-4">
+                <li class="flex items-start gap-3.5">
+                  <div class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <span class="text-slate-700">Flexible support arrangements based on client requirements and contracted coverage hours.</span>
+                </li>
+                <li class="flex items-start gap-3.5">
+                  <div class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <span class="text-slate-700">White-label service delivery, subject to agreed confidentiality and operating procedures.</span>
+                </li>
+                <li class="flex items-start gap-3.5">
+                  <div class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <span class="text-slate-700">Additional technical capacity without the overhead and delay of immediate full-time recruitment.</span>
+                </li>
+                <li class="flex items-start gap-3.5">
+                  <div class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <span class="text-slate-700">Clear escalation and communication processes tailored to your internal service desk.</span>
+                </li>
+                <li class="flex items-start gap-3.5">
+                  <div class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  <span class="text-slate-700">A service model that can grow steadily alongside your MSP’s client base.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Governance & Confidentiality Box -->
+            <div class="lg:col-span-5 bg-surface rounded-2xl border border-slate-200 p-7 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-navy-900 text-white flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
                 </div>
-                <p class="text-slate-400 max-w-xs text-sm leading-relaxed">
-                    End-to-end technical solutions designed to scale with your organization.
+                <h3 class="font-display text-lg font-bold text-navy-900">
+                  Governance, Branding &amp; Scope Clarity
+                </h3>
+              </div>
+
+              <div class="space-y-3 text-sm text-neutralText leading-relaxed">
+                <p>
+                  <strong class="text-navy-900">Contractual White-Label Terms:</strong> Confidentiality, non-solicitation, client system access controls, service boundaries, and white-label branding arrangements are formally agreed contractually prior to onboarding.
                 </p>
+                <p>
+                  <strong class="text-navy-900">Tailored Coverage &amp; Pricing:</strong> Because every MSP’s toolset, ticket volume, and coverage schedule differs, we scope engagements through a direct consultation rather than one-size-fits-all tiers.
+                </p>
+              </div>
+
+              <div class="mt-6 pt-5 border-t border-slate-200">
+                <button
+                  type="button"
+                  onclick="startInquiry('MSP Partnership')"
+                  class="w-full inline-flex items-center justify-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm"
+                >
+                  <span>Discuss a White-Label Partnership</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
+              </div>
             </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Support -->
-                <div class="card-premium p-8 rounded-3xl">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fas fa-laptop-medical"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">IT Troubleshooting</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Full-spectrum diagnostic and repair services to resolve hardware and software conflicts instantly.</p>
-                </div>
-
-                <!-- Windows Server -->
-                <div class="card-premium p-8 rounded-3xl">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fab fa-windows"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">Windows Server Setup</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Professional installation, configuration, and optimization of server environments for peak performance.</p>
-                </div>
-
-                <!-- Network -->
-                <div class="card-premium p-8 rounded-3xl">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">Managed Networks</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Seamless connectivity through intelligent network design, switching, and routing management.</p>
-                </div>
-
-                <!-- Firewall -->
-                <div class="card-premium p-8 rounded-3xl">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">Firewall Management</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Advanced perimeter security and rule management to safeguard your internal data from unauthorized access.</p>
-                </div>
-
-                <!-- Hardware -->
-                <div class="card-premium p-8 rounded-3xl">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fas fa-box-open"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">Hardware Deployment</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Strategic office hardware rollout, including workstations, printers, and peripheral integration.</p>
-                </div>
-
-                <!-- Monitoring -->
-                <div class="card-premium p-8 rounded-3xl">
-                    <div class="flex items-center space-x-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-600/10 rounded-xl flex items-center justify-center text-blue-500">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h4 class="text-lg font-bold">24x7 Monitoring</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Round-the-clock systems oversight and dedicated IT personnel assistance whenever you need it.</p>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 relative bg-slate-900/30">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
-            <div class="space-y-10">
-                <div class="space-y-4">
-                    <h2 class="text-xs font-black uppercase tracking-[0.3em] text-blue-500">Get in Touch</h2>
-                    <p class="text-4xl font-extrabold leading-tight">Request specialized support for your infrastructure.</p>
-                </div>
-                
-                <div class="space-y-8">
-                    <div class="flex items-start space-x-6">
-                        <div class="mt-1 w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-blue-500 shrink-0">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-white uppercase text-xs tracking-widest mb-1">Email Us</h5>
-                            <p class="text-slate-400">info@nxtgen-it.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-6">
-                        <div class="mt-1 w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-blue-500 shrink-0">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-white uppercase text-xs tracking-widest mb-1">Call Support</h5>
-                            <p class="text-slate-400">+63 939 420 6695</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- =================================================================== -->
+    <!-- VIEW 3: MANAGED IT SERVICES (PHILIPPINE BUSINESSES)                 -->
+    <!-- =================================================================== -->
+    <section id="view-managed-it" class="page-view" aria-label="Managed IT Services for Philippine Businesses">
+      <!-- Page Hero -->
+      <div class="bg-navy-900 tech-grid-bg text-white border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-5">
+              FOR PHILIPPINE BUSINESSES
             </div>
-
-            <div class="card-premium p-8 rounded-3xl border-white/5 shadow-2xl relative">
-                <!-- Success Message Overlay -->
-                <div id="form-success" class="hidden absolute inset-0 z-20 bg-slate-900/95 rounded-3xl flex flex-col items-center justify-center p-8 text-center space-y-4">
-                    <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-3xl">
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white">Message Sent!</h3>
-                    <p class="text-slate-400 text-sm">Thank you for reaching out. A member of our IT team will contact you shortly.</p>
-                    <button onclick="resetForm()" class="text-blue-500 font-bold uppercase text-xs tracking-widest hover:text-blue-400 pt-4">Send another message</button>
-                </div>
-
-                <form id="contact-form" action="https://formspree.io/f/mzdgbqae" method="POST" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
-                            <!-- 'name' attribute is what Formspree uses for labels -->
-                            <input type="text" name="Full Name" required class="w-full px-4 py-3 rounded-xl input-dark text-sm" placeholder="Juan Dela Cruz">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Business Email</label>
-                            <!-- 'email' name is special for Formspree to reply to the user -->
-                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl input-dark text-sm" placeholder="juan@company.ph">
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Service Required</label>
-                        <select name="Service Category" class="w-full px-4 py-3 rounded-xl input-dark text-sm bg-slate-950">
-                            <option value="IT Support">Comprehensive IT Support</option>
-                            <option value="Server Setup">Windows Server Setup</option>
-                            <option value="Network">Managed Network Services</option>
-                            <option value="Security">Firewall Configuration</option>
-                        </select>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Your Message</label>
-                        <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-xl input-dark text-sm" placeholder="Tell us about your IT requirements..."></textarea>
-                    </div>
-
-                    <!-- IMPORTANT: Honeypot field to stop bots (Spam prevention) -->
-                    <input type="text" name="_gotcha" style="display:none">
-
-                    <!-- Hidden config for Formspree -->
-                    <input type="hidden" name="_subject" value="New Service Inquiry - NXTGN-IT Portfolio">
-                    <input type="hidden" name="_template" value="table">
-
-                    <button type="submit" id="submit-btn" class="w-full btn-glow bg-blue-600 py-4 rounded-xl font-bold text-white tracking-wide uppercase text-xs flex items-center justify-center space-x-3 transition-all disabled:opacity-50">
-                        <span id="btn-text">Initiate Inquiry</span>
-                        <i id="btn-icon" class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              Managed IT Services for Growing Businesses
+            </h1>
+            <p class="text-lg text-slate-300 leading-relaxed mt-5">
+              Your business should focus on its operations, not spend its time dealing with IT problems. NXTGN-IT helps businesses maintain their IT environments through practical technical support, infrastructure management, and network services.
+            </p>
+            <div class="mt-8">
+              <button
+                type="button"
+                onclick="startInquiry('Business IT Support')"
+                class="inline-flex items-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-md transition-colors text-sm sm:text-base"
+              >
+                <span>Request an IT Consultation</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
             </div>
+          </div>
         </div>
+      </div>
+
+      <!-- 4 Service Categories Grid -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="max-w-2xl mb-12">
+          <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Service Scope</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+            Practical IT Support &amp; Infrastructure Management
+          </h2>
+          <p class="text-neutralText mt-3">
+            Structured around your office locations, user count, and operational requirements.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Category 1: Managed IT Support -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-8">
+            <div class="flex items-center gap-3.5 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-brandBlue-600 text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 class="font-display text-xl font-bold text-navy-900">Managed IT Support</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-neutralText">
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Desktop and user support</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Troubleshooting and incident management</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>IT maintenance and operational documentation</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Remote technical assistance</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: Network & Infrastructure -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-8">
+            <div class="flex items-center gap-3.5 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                </svg>
+              </div>
+              <h3 class="font-display text-xl font-bold text-navy-900">Network &amp; Infrastructure</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-neutralText">
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Router and switch configuration</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Firewall administration</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Wireless network management</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Network monitoring and troubleshooting</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Server & Systems Administration -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-8">
+            <div class="flex items-center gap-3.5 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-navy-900 text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                </svg>
+              </div>
+              <h3 class="font-display text-xl font-bold text-navy-900">Server &amp; Systems Administration</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-neutralText">
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Windows Server administration</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Active Directory and user management</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Virtualization support</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-navy-900 shrink-0"></span>
+                <span>Server health monitoring</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 4: IT Security Support -->
+          <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-8">
+            <div class="flex items-center gap-3.5 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-brandBlue-600 text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 class="font-display text-xl font-bold text-navy-900">IT Security Support</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-neutralText">
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Firewall and access management</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Security configuration assistance</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Infrastructure security reviews</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brandBlue-600 shrink-0"></span>
+                <span>Incident escalation and coordination</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Consultation & Custom Scoping Callout -->
+        <div class="mt-14 bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <h3 class="font-display text-xl sm:text-2xl font-bold text-navy-900">
+              Tailored Support Plans Based on Your Environment
+            </h3>
+            <p class="text-neutralText mt-2 text-sm sm:text-base leading-relaxed">
+              Every business has a distinct mix of users, devices, servers, coverage hours, and existing tools. We provide custom proposals following an initial infrastructure assessment so you only pay for the support scope your operations actually need.
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="startInquiry('Business IT Support')"
+            class="inline-flex items-center justify-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3.5 rounded-xl transition-colors text-sm shrink-0 w-full lg:w-auto"
+          >
+            <span>Request an IT Consultation</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 text-center">
-        <div class="flex items-center justify-center space-x-2 mb-8">
-            <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center font-black italic text-[10px] text-white">N</div>
-            <span class="text-sm font-bold tracking-tighter text-white uppercase">NXTGN<span class="text-blue-500">-IT</span></span>
+    <!-- =================================================================== -->
+    <!-- VIEW 4: OUR COMPANY                                                 -->
+    <!-- =================================================================== -->
+    <section id="view-company" class="page-view" aria-label="Our Company">
+      <!-- Page Hero -->
+      <div class="bg-navy-900 tech-grid-bg text-white border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-5">
+              ABOUT NXTGN-IT SERVICES
+            </div>
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              A Dependable Technical Partner Working Behind Your Brand
+            </h1>
+            <p class="text-lg text-slate-300 leading-relaxed mt-5">
+              Focused on helping managed service providers and businesses manage their technology operations with confidence, accountability, and clear communication.
+            </p>
+          </div>
         </div>
-        <div class="flex justify-center space-x-6 text-xs text-slate-500 font-bold uppercase tracking-widest mb-6">
-            <a href="#" class="hover:text-white">LinkedIn</a>
-            <a href="#" class="hover:text-white">Facebook</a>
-            <a href="#" class="hover:text-white">Privacy</a>
+      </div>
+
+      <!-- Who We Are & Mission / Vision -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <!-- Who We Are Narrative -->
+          <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-8 sm:p-10">
+            <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Who We Are</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2 mb-5">
+              Practical IT Expertise &amp; Lasting Partnerships
+            </h2>
+            <div class="space-y-4 text-neutralText leading-relaxed">
+              <p>
+                NXTGN-IT Services is an IT services company focused on helping managed service providers and businesses manage their technology operations with confidence. We provide network and infrastructure support, IT assistance, and technical resources that help organizations maintain reliable IT environments without the burden of building and managing every resource internally.
+              </p>
+              <p>
+                For international MSPs, we offer flexible white-label support designed to work behind the scenes as an extension of their existing team. For local businesses, we provide practical IT services that support their day-to-day operations and future growth.
+              </p>
+              <p class="text-navy-900 font-medium">
+                We believe good IT service goes beyond resolving tickets. It means taking responsibility, communicating clearly, understanding the client’s environment, and building relationships that last.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mission & Vision Cards -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-8">
+              <div class="inline-flex items-center gap-2 text-brandBlue-600 font-bold text-xs uppercase tracking-wider mb-2">
+                Our Mission
+              </div>
+              <p class="text-slate-700 leading-relaxed">
+                To help businesses and managed service providers deliver dependable IT services through skilled people, practical solutions, and responsive technical support. We aim to build lasting partnerships by making technology easier to manage, maintain, and scale.
+              </p>
+            </div>
+
+            <div class="bg-navy-900 text-white rounded-2xl p-8">
+              <div class="inline-flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-wider mb-2">
+                Our Vision
+              </div>
+              <p class="text-slate-200 leading-relaxed">
+                To become a trusted IT services partner for businesses and MSPs locally and internationally, known for reliable service, technical expertise, and genuine commitment to our clients’ success.
+              </p>
+            </div>
+          </div>
         </div>
-        <p class="text-[10px] text-slate-600 uppercase tracking-widest">© 2026 NXTGN-IT Services PH. All Rights Reserved.</p>
-    </footer>
 
-    <script>
-        const form = document.getElementById('contact-form');
-        const successOverlay = document.getElementById('form-success');
-        const btnText = document.getElementById('btn-text');
-        const btnIcon = document.getElementById('btn-icon');
-        const submitBtn = document.getElementById('submit-btn');
+        <!-- Our Core Values (5 Cards) -->
+        <div class="mt-16 sm:mt-20">
+          <div class="max-w-2xl mb-10">
+            <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Principles</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+              Our Core Values
+            </h2>
+          </div>
 
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            
-            // UI Loading state
-            submitBtn.disabled = true;
-            btnText.innerText = "Sending...";
-            btnIcon.className = "fas fa-spinner fa-spin";
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-6">
+              <div class="w-9 h-9 rounded-lg bg-brandBlue-50 text-brandBlue-600 font-display font-bold flex items-center justify-center mb-4">01</div>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Reliability</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                We take ownership of our work and follow through on our commitments.
+              </p>
+            </div>
 
-            const formData = new FormData(form);
-            
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
+            <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-6">
+              <div class="w-9 h-9 rounded-lg bg-brandBlue-50 text-brandBlue-600 font-display font-bold flex items-center justify-center mb-4">02</div>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Partnership</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                We work alongside our clients and understand their business goals.
+              </p>
+            </div>
 
-                if (response.ok) {
-                    successOverlay.classList.remove('hidden');
-                    form.reset();
-                } else {
-                    const data = await response.json();
-                    alert(data.errors ? data.errors[0].message : "Oops! There was a problem submitting your form");
-                }
-            } catch (error) {
-                alert("Technical error. Please check your connection.");
-            } finally {
-                submitBtn.disabled = false;
-                btnText.innerText = "Initiate Inquiry";
-                btnIcon.className = "fas fa-paper-plane";
-            }
-        };
+            <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-6">
+              <div class="w-9 h-9 rounded-lg bg-brandBlue-50 text-brandBlue-600 font-display font-bold flex items-center justify-center mb-4">03</div>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Practical Innovation</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                We use technology to solve real problems and improve operations.
+              </p>
+            </div>
 
-        function resetForm() {
-            successOverlay.classList.add('hidden');
+            <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-6">
+              <div class="w-9 h-9 rounded-lg bg-brandBlue-50 text-brandBlue-600 font-display font-bold flex items-center justify-center mb-4">04</div>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Continuous Improvement</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                We invest in our people, processes, and technical capabilities.
+              </p>
+            </div>
+
+            <div class="enterprise-card bg-white rounded-2xl border border-slate-200 p-6">
+              <div class="w-9 h-9 rounded-lg bg-brandBlue-50 text-brandBlue-600 font-display font-bold flex items-center justify-center mb-4">05</div>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Integrity</h3>
+              <p class="text-sm text-neutralText leading-relaxed">
+                We value transparency, confidentiality, and doing what is right.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- How We Work (5-Step Visual Workflow) -->
+        <div class="mt-16 sm:mt-20 bg-white rounded-3xl border border-slate-200 p-8 sm:p-12">
+          <div class="max-w-2xl mb-10">
+            <span class="text-brandBlue-600 font-semibold text-xs uppercase tracking-wider">Engagement Process</span>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-navy-900 mt-2">
+              How We Work
+            </h2>
+            <p class="text-neutralText mt-2">
+              A structured, transparent onboarding and service delivery workflow designed for clarity and operational continuity.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <!-- Step 1 -->
+            <div class="relative bg-surface rounded-2xl border border-slate-200 p-5">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider text-brandBlue-600 mb-2">Step 01</span>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Understand Your Requirements</h3>
+              <p class="text-xs sm:text-sm text-neutralText leading-relaxed">
+                Discuss the infrastructure, business needs, service expectations, and current challenges.
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="relative bg-surface rounded-2xl border border-slate-200 p-5">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider text-brandBlue-600 mb-2">Step 02</span>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Assess &amp; Plan</h3>
+              <p class="text-xs sm:text-sm text-neutralText leading-relaxed">
+                Identify technical resources, scope of work, coverage hours, and escalation arrangements.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="relative bg-surface rounded-2xl border border-slate-200 p-5">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider text-brandBlue-600 mb-2">Step 03</span>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Onboard &amp; Document</h3>
+              <p class="text-xs sm:text-sm text-neutralText leading-relaxed">
+                Establish access controls, procedures, communication channels, and operational documentation.
+              </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="relative bg-surface rounded-2xl border border-slate-200 p-5">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider text-brandBlue-600 mb-2">Step 04</span>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Deliver &amp; Support</h3>
+              <p class="text-xs sm:text-sm text-neutralText leading-relaxed">
+                Provide the agreed services, monitor performance, and manage incidents according to the agreed scope.
+              </p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="relative bg-surface rounded-2xl border border-slate-200 p-5">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider text-brandBlue-600 mb-2">Step 05</span>
+              <h3 class="font-display font-bold text-navy-900 text-base mb-2">Review &amp; Improve</h3>
+              <p class="text-xs sm:text-sm text-neutralText leading-relaxed">
+                Evaluate service performance and identify opportunities to improve IT operations.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p class="text-sm text-neutralText">
+              Ready to explore how NXTGN-IT can support your team or business?
+            </p>
+            <button
+              type="button"
+              onclick="navigateTo('contact')"
+              class="inline-flex items-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
+            >
+              <span>Start a Conversation</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VIEW 5: CONTACT US                                                  -->
+    <!-- =================================================================== -->
+    <section id="view-contact" class="page-view" aria-label="Contact Us">
+      <!-- Page Hero -->
+      <div class="bg-navy-900 tech-grid-bg text-white border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-4">
+              GET IN TOUCH
+            </div>
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+              Let’s Talk About Your IT Needs.
+            </h1>
+            <p class="text-lg text-slate-300 leading-relaxed mt-4">
+              Whether you’re an MSP looking for a reliable white-label partner or a business seeking dependable IT support, we’d be happy to discuss how we can work together.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form & Info Layout -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <!-- Left Sidebar: Consultation Guidance -->
+          <div class="lg:col-span-4 space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-7">
+              <h2 class="font-display text-lg font-bold text-navy-900 mb-3">
+                What to Expect
+              </h2>
+              <ul class="space-y-3.5 text-sm text-neutralText">
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                  <span>We review your inquiry, target coverage hours, and infrastructure scope.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                  <span>We schedule a direct technical discovery call with our operations team.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-6 h-6 rounded-full bg-brandBlue-50 text-brandBlue-600 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                  <span>You receive a clear service outline, escalation model, and custom quote.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-navy-900 text-white rounded-2xl p-7">
+              <h3 class="font-display text-base font-bold text-white mb-2">
+                Markets &amp; Service Coverage
+              </h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                Based in the Philippines and serving international MSP partners across the United States, Australia, and global regions, alongside local Philippine businesses.
+              </p>
+              <div class="pt-4 border-t border-white/10 text-xs text-slate-400 space-y-1.5">
+                <p><strong class="text-slate-200">Website:</strong> nxtgn-it.com</p>
+                <p><strong class="text-slate-200">Confidentiality:</strong> NDA &amp; white-label agreements available prior to technical discovery.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Validated Interactive Form -->
+          <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-7 sm:p-10 shadow-sm">
+            <!-- Validation Alert Banner (Hidden by default) -->
+            <div id="form-error-banner" class="hidden mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm flex items-start gap-3" role="alert">
+              <svg class="w-5 h-5 text-red-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p class="font-semibold">Please complete all required fields</p>
+                <p id="form-error-text" class="mt-0.5 text-red-700">Check the highlighted fields below and ensure you accept the privacy consent notice.</p>
+              </div>
+            </div>
+
+            <!-- Interactive Form -->
+            <form id="consultation-form" novalidate onsubmit="handleContactSubmit(event)" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Full Name -->
+                <div>
+                  <label for="fullName" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                    Full Name <span class="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    required
+                    placeholder="e.g., Alex Morgan"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                  />
+                </div>
+
+                <!-- Business Email -->
+                <div>
+                  <label for="businessEmail" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                    Business Email <span class="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="businessEmail"
+                    name="businessEmail"
+                    required
+                    placeholder="alex@company.com"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Company Name -->
+                <div>
+                  <label for="companyName" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                    Company Name <span class="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    required
+                    placeholder="Your MSP or Company Name"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                  />
+                </div>
+
+                <!-- Country -->
+                <div>
+                  <label for="country" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                    Country <span class="text-red-600">*</span>
+                  </label>
+                  <select
+                    id="country"
+                    name="country"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                  >
+                    <option value="United States">United States</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Philippines">Philippines</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Other International">Other International</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Type of Inquiry -->
+                <div>
+                  <label for="inquiryType" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                    Type of Inquiry <span class="text-red-600">*</span>
+                  </label>
+                  <select
+                    id="inquiryType"
+                    name="inquiryType"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                  >
+                    <option value="MSP Partnership">MSP Partnership (White-Label Support)</option>
+                    <option value="Business IT Support">Business IT Support (Managed IT Services)</option>
+                    <option value="Other">Other Inquiry</option>
+                  </select>
+                </div>
+
+                <!-- Number of Users or Devices (Optional) -->
+                <div>
+                  <label for="userDeviceCount" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                    Number of Users or Devices <span class="text-slate-400 font-normal">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="userDeviceCount"
+                    name="userDeviceCount"
+                    placeholder="e.g., 150 endpoints / 45 users"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                  />
+                </div>
+              </div>
+
+              <!-- Required Services (Multi-select checkboxes) -->
+              <div>
+                <span class="block text-sm font-semibold text-navy-900 mb-2.5">
+                  Required Services
+                </span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors">
+                    <input type="checkbox" name="services" value="Shared NOC Support" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">Shared NOC Support</span>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors">
+                    <input type="checkbox" name="services" value="Dedicated Engineers" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">Dedicated Engineers</span>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors">
+                    <input type="checkbox" name="services" value="L1/L2 Helpdesk" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">L1/L2 Helpdesk</span>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors">
+                    <input type="checkbox" name="services" value="Network & Firewall Administration" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">Network &amp; Firewall Administration</span>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors">
+                    <input type="checkbox" name="services" value="Server & Virtualization Support" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">Server &amp; Virtualization Support</span>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors">
+                    <input type="checkbox" name="services" value="After-Hours Coverage" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">After-Hours Coverage</span>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-surface cursor-pointer transition-colors sm:col-span-2">
+                    <input type="checkbox" name="services" value="Managed IT & Security" class="w-4 h-4 rounded text-brandBlue-600 focus:ring-brandBlue-600" />
+                    <span class="text-sm text-slate-700">Managed IT &amp; Security</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block text-sm font-semibold text-navy-900 mb-1.5">
+                  Message <span class="text-red-600">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="Share your current IT environment, support coverage expectations, or partnership goals..."
+                  class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brandBlue-600 focus:border-brandBlue-600 text-sm"
+                ></textarea>
+              </div>
+
+              <!-- Privacy Notice & Consent Checkbox -->
+              <div class="bg-surface rounded-xl border border-slate-200 p-4">
+                <label class="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="privacyConsent"
+                    name="privacyConsent"
+                    required
+                    class="w-4 h-4 mt-1 rounded text-brandBlue-600 focus:ring-brandBlue-600 shrink-0"
+                  />
+                  <span class="text-xs sm:text-sm text-neutralText leading-relaxed">
+                    I consent to NXTGN-IT Services collecting and using the contact details submitted in this form solely to respond to my consultation inquiry. Information is handled confidentially and is not sold or shared with third-party marketers. See our
+                    <button type="button" onclick="openLegalModal('privacy')" class="text-brandBlue-600 underline hover:text-brandBlue-700 font-medium">Privacy Policy</button>. <span class="text-red-600">*</span>
+                  </span>
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <div>
+                <button
+                  type="submit"
+                  class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-sm transition-colors text-sm sm:text-base"
+                >
+                  <span>Submit Inquiry</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+
+            <!-- Confirmation Summary State (Shown after valid submission) -->
+            <div id="form-confirmation" class="hidden">
+              <div class="p-6 sm:p-8 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+                <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center mb-5">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h2 class="font-display text-2xl font-bold text-navy-900">
+                  Inquiry Received — Thank You
+                </h2>
+                <p class="text-neutralText mt-2 text-sm sm:text-base leading-relaxed">
+                  We have recorded your consultation request. Our operations team will review your requirements and respond to your business email promptly.
+                </p>
+
+                <!-- Submitted Summary Box -->
+                <div id="submission-summary" class="mt-6 bg-white rounded-xl border border-slate-200 p-5 text-sm space-y-2.5 text-slate-700">
+                  <!-- Populated dynamically via JS -->
+                </div>
+
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onclick="resetContactForm()"
+                    class="inline-flex items-center justify-center bg-navy-900 hover:bg-navy-800 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
+                  >
+                    Submit Another Inquiry
+                  </button>
+                  <button
+                    type="button"
+                    onclick="navigateTo('home')"
+                    class="inline-flex items-center justify-center bg-white hover:bg-slate-50 border border-slate-300 text-navy-900 font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
+                  >
+                    Return to Home
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER (CONSISTENT ACROSS ALL VIEWS)                                  -->
+  <!-- ===================================================================== -->
+  <footer class="bg-navy-900 text-slate-300 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-white/10">
+        <!-- Brand & Tagline -->
+        <div class="md:col-span-6 space-y-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-brandBlue-600/20 border border-brandBlue-600/40 flex items-center justify-center">
+              <svg class="w-4 h-4 text-blue-400" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+                <rect x="18" y="3" width="7" height="7" rx="1.5" stroke="#60A5FA" stroke-width="2" />
+                <rect x="18" y="18" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+                <rect x="3" y="18" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" />
+                <circle cx="14" cy="14" r="2.25" fill="#3B82F6" />
+              </svg>
+            </div>
+            <span class="font-display font-bold text-lg text-white">NXTGN-IT Services</span>
+          </div>
+
+          <p class="text-white font-medium text-sm sm:text-base">
+            Your Technology Partner. Working Behind Your Brand.
+          </p>
+          <p class="text-slate-400 text-sm">
+            Managed IT Services | White-Label MSP Support | Network &amp; Infrastructure
+          </p>
+          <p class="text-slate-400 text-xs pt-1">
+            Philippines | Serving International Clients
+          </p>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="md:col-span-3">
+          <h3 class="text-white font-display font-bold text-sm uppercase tracking-wider mb-3">
+            Navigation
+          </h3>
+          <ul class="space-y-2 text-sm">
+            <li><button type="button" onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</button></li>
+            <li><button type="button" onclick="navigateTo('whitelabel')" class="hover:text-white transition-colors">White-Label MSP</button></li>
+            <li><button type="button" onclick="navigateTo('managed-it')" class="hover:text-white transition-colors">Managed IT Services</button></li>
+            <li><button type="button" onclick="navigateTo('company')" class="hover:text-white transition-colors">Our Company</button></li>
+            <li><button type="button" onclick="navigateTo('contact')" class="hover:text-white transition-colors">Contact</button></li>
+          </ul>
+        </div>
+
+        <!-- Governance & Legal -->
+        <div class="md:col-span-3">
+          <h3 class="text-white font-display font-bold text-sm uppercase tracking-wider mb-3">
+            Governance &amp; Legal
+          </h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <button type="button" onclick="openLegalModal('privacy')" class="hover:text-white transition-colors">
+                Privacy Policy
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openLegalModal('terms')" class="hover:text-white transition-colors">
+                Terms of Service
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>&copy; <span id="current-year"></span> NXTGN-IT Services. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <button type="button" onclick="openLegalModal('privacy')" class="hover:text-white transition-colors">Privacy Policy</button>
+          <span>|</span>
+          <button type="button" onclick="openLegalModal('terms')" class="hover:text-white transition-colors">Terms of Service</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- LEGAL MODAL (PRIVACY POLICY & TERMS OF SERVICE)                       -->
+  <!-- ===================================================================== -->
+  <div id="legal-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <!-- Backdrop -->
+    <div class="fixed inset-0 bg-navy-950/75 backdrop-blur-sm transition-opacity" onclick="closeLegalModal()"></div>
+
+    <!-- Modal Panel -->
+    <div class="relative min-h-screen flex items-center justify-center p-4">
+      <div class="relative bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 z-10">
+        <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-200">
+          <div>
+            <span id="legal-modal-badge" class="text-xs font-bold uppercase tracking-wider text-brandBlue-600">Governance</span>
+            <h2 id="legal-modal-title" class="font-display text-xl sm:text-2xl font-bold text-navy-900 mt-1">
+              Privacy Policy
+            </h2>
+          </div>
+          <button
+            type="button"
+            onclick="closeLegalModal()"
+            class="p-2 rounded-xl text-slate-400 hover:text-navy-900 hover:bg-slate-100 transition-colors"
+            aria-label="Close modal"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div id="legal-modal-body" class="py-5 text-sm text-neutralText space-y-4 max-h-[65vh] overflow-y-auto leading-relaxed">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 flex justify-end">
+          <button
+            type="button"
+            onclick="closeLegalModal()"
+            class="bg-navy-900 hover:bg-navy-800 text-white font-semibold px-5 py-2.5 rounded-xl text-sm transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC                                                     -->
+  <!-- ===================================================================== -->
+  <script>
+    // Set current copyright year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    /**
+     * Client-side view navigation controller
+     * @param {string} viewId - 'home' | 'whitelabel' | 'managed-it' | 'company' | 'contact'
+     */
+    function navigateTo(viewId) {
+      const views = document.querySelectorAll('.page-view');
+      views.forEach((el) => el.classList.remove('active'));
+
+      const targetView = document.getElementById(`view-${viewId}`);
+      if (targetView) {
+        targetView.classList.add('active');
+      }
+
+      // Update active navigation states (desktop & mobile)
+      document.querySelectorAll('.nav-link').forEach((btn) => {
+        if (btn.getAttribute('data-nav') === viewId) {
+          btn.classList.add('bg-white/10', 'text-white');
+          btn.classList.remove('text-slate-200');
+        } else {
+          btn.classList.remove('bg-white/10', 'text-white');
+          btn.classList.add('text-slate-200');
         }
-    </script>
+      });
 
+      document.querySelectorAll('.nav-link-mobile').forEach((btn) => {
+        if (btn.getAttribute('data-nav') === viewId) {
+          btn.classList.add('bg-white/10', 'text-white');
+        } else {
+          btn.classList.remove('bg-white/10', 'text-white');
+        }
+      });
+
+      // Scroll smoothly to top of viewport
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Smooth scroll to an element ID within the active view
+     */
+    function scrollToElement(elementId) {
+      const el = document.getElementById(elementId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    /**
+     * Navigate to Contact view and pre-select the appropriate inquiry type
+     * @param {string} inquiryType - 'MSP Partnership' | 'Business IT Support' | 'Other'
+     */
+    function startInquiry(inquiryType) {
+      navigateTo('contact');
+      const selectEl = document.getElementById('inquiryType');
+      const countryEl = document.getElementById('country');
+
+      if (selectEl) {
+        selectEl.value = inquiryType;
+      }
+
+      // Helpful sensible default for country based on pathway
+      if (countryEl) {
+        if (inquiryType === 'Business IT Support') {
+          countryEl.value = 'Philippines';
+        } else if (inquiryType === 'MSP Partnership' && countryEl.value === 'Philippines') {
+          countryEl.value = 'United States';
+        }
+      }
+    }
+
+    /**
+     * Toggle mobile menu visibility
+     */
+    function toggleMobileMenu(forceState) {
+      const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('mobile-menu-btn');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : menu.classList.contains('hidden');
+
+      if (shouldOpen) {
+        menu.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    /**
+     * Validate and handle Contact Form submission
+     */
+    function handleContactSubmit(event) {
+      event.preventDefault();
+
+      const errorBanner = document.getElementById('form-error-banner');
+      const errorText = document.getElementById('form-error-text');
+
+      const fullName = document.getElementById('fullName').value.trim();
+      const businessEmail = document.getElementById('businessEmail').value.trim();
+      const companyName = document.getElementById('companyName').value.trim();
+      const country = document.getElementById('country').value;
+      const inquiryType = document.getElementById('inquiryType').value;
+      const userDeviceCount = document.getElementById('userDeviceCount').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const privacyConsent = document.getElementById('privacyConsent').checked;
+
+      const selectedServices = Array.from(document.querySelectorAll('input[name="services"]:checked'))
+        .map((cb) => cb.value);
+
+      // Basic email format validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!fullName || !businessEmail || !companyName || !message) {
+        errorText.textContent = 'Please fill in your Full Name, Business Email, Company Name, and Message.';
+        errorBanner.classList.remove('hidden');
+        errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      if (!emailRegex.test(businessEmail)) {
+        errorText.textContent = 'Please enter a valid business email address.';
+        errorBanner.classList.remove('hidden');
+        errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      if (!privacyConsent) {
+        errorText.textContent = 'Please confirm your consent to our Privacy Policy before submitting your inquiry.';
+        errorBanner.classList.remove('hidden');
+        errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Hide errors & show confirmation state
+      errorBanner.classList.add('hidden');
+
+      const summaryContainer = document.getElementById('submission-summary');
+      summaryContainer.innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div><span class="text-slate-500 block text-xs uppercase font-semibold">Contact Name</span><span class="font-medium text-navy-900">${escapeHtml(fullName)}</span></div>
+          <div><span class="text-slate-500 block text-xs uppercase font-semibold">Business Email</span><span class="font-medium text-navy-900">${escapeHtml(businessEmail)}</span></div>
+          <div><span class="text-slate-500 block text-xs uppercase font-semibold">Company</span><span class="font-medium text-navy-900">${escapeHtml(companyName)}</span></div>
+          <div><span class="text-slate-500 block text-xs uppercase font-semibold">Country</span><span class="font-medium text-navy-900">${escapeHtml(country)}</span></div>
+          <div><span class="text-slate-500 block text-xs uppercase font-semibold">Inquiry Type</span><span class="font-medium text-brandBlue-600">${escapeHtml(inquiryType)}</span></div>
+          <div><span class="text-slate-500 block text-xs uppercase font-semibold">Users / Devices</span><span class="font-medium text-navy-900">${userDeviceCount ? escapeHtml(userDeviceCount) : 'To be discussed'}</span></div>
+        </div>
+        <div class="pt-3 border-t border-slate-100">
+          <span class="text-slate-500 block text-xs uppercase font-semibold mb-1">Selected Services</span>
+          <span class="font-medium text-navy-900">${selectedServices.length > 0 ? escapeHtml(selectedServices.join(', ')) : 'General Consultation'}</span>
+        </div>
+        <div class="pt-3 border-t border-slate-100">
+          <span class="text-slate-500 block text-xs uppercase font-semibold mb-1">Message</span>
+          <p class="text-slate-700 whitespace-pre-line">${escapeHtml(message)}</p>
+        </div>
+      `;
+
+      document.getElementById('consultation-form').classList.add('hidden');
+      document.getElementById('form-confirmation').classList.remove('hidden');
+      document.getElementById('form-confirmation').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    /**
+     * Reset Contact Form to initial state
+     */
+    function resetContactForm() {
+      document.getElementById('consultation-form').reset();
+      document.getElementById('form-confirmation').classList.add('hidden');
+      document.getElementById('consultation-form').classList.remove('hidden');
+    }
+
+    /**
+     * Escape HTML entities to prevent XSS in dynamic summary rendering
+     */
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    /**
+     * Legal Modal Controller (Privacy Policy & Terms of Service)
+     */
+    function openLegalModal(type) {
+      const modal = document.getElementById('legal-modal');
+      const badge = document.getElementById('legal-modal-badge');
+      const title = document.getElementById('legal-modal-title');
+      const body = document.getElementById('legal-modal-body');
+
+      if (type === 'privacy') {
+        badge.textContent = 'Data Handling & Confidentiality';
+        title.textContent = 'Privacy Policy';
+        body.innerHTML = `
+          <p><strong class="text-navy-900">1. Information We Collect:</strong> When you submit an inquiry through the NXTGN-IT Services website, we collect the business contact details you voluntarily provide, including your full name, business email address, company name, country, inquiry category, optional user/device counts, selected service interests, and message details.</p>
+          <p><strong class="text-navy-900">2. How We Use Your Information:</strong> Submitted information is used strictly to evaluate your technical requirements, respond to your consultation request, and communicate regarding potential white-label MSP partnerships or managed IT services.</p>
+          <p><strong class="text-navy-900">3. Confidentiality &amp; Data Protection:</strong> We do not sell, rent, or trade your personal or business contact details to third parties. Access to inquiry records is restricted to authorized NXTGN-IT personnel handling client onboarding and operations.</p>
+          <p><strong class="text-navy-900">4. Your Rights:</strong> You may request access to, correction of, or deletion of your submitted inquiry details at any time by contacting our team through this website.</p>
+        `;
+      } else {
+        badge.textContent = 'Website & Service Governance';
+        title.textContent = 'Terms of Service';
+        body.innerHTML = `
+          <p><strong class="text-navy-900">1. Informational Purpose:</strong> The content on nxtgn-it.com outlines our white-label MSP support and managed IT service capabilities. Website descriptions do not constitute a binding service-level agreement (SLA) or fixed price offer.</p>
+          <p><strong class="text-navy-900">2. Scope &amp; Contracting:</strong> All managed IT engagements and white-label MSP partnerships—including coverage hours, escalation workflows, confidentiality obligations, system access boundaries, and branding terms—are governed by formal written agreements signed prior to service commencement.</p>
+          <p><strong class="text-navy-900">3. Intellectual Property:</strong> All trademarks, branding, and original materials on this website belong to NXTGN-IT Services unless otherwise noted.</p>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeLegalModal() {
+      document.getElementById('legal-modal').classList.add('hidden');
+    }
+
+    // Initialize default active nav state on load
+    navigateTo('home');
+  </script>
 </body>
 </html>
